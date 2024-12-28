@@ -59,7 +59,7 @@ function formatRupiah($angka)
                             <p class="deskripsi"><?=htmlspecialchars($produk['deskripsi'])?></p>
                             <div class="details">
                                 <span class="harga"><?=formatRupiah(htmlspecialchars($produk['harga']))?></span>
-                                <a class="button" href="detail_menu.php?id=<?=htmlspecialchars($produk['id'])?>">Lihat Detail</a>
+                                <a class="button" href="detail_produk.php?id=<?=htmlspecialchars($produk['id'])?>">Lihat Detail</a>
                             </div>
                         </div>
                     </div>
