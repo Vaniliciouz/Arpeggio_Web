@@ -6,11 +6,6 @@ session_start();
 if (isset($_GET['logout'])) {
     $admin_id = $_SESSION['admin']['id'];
 
-    $history_id = 'history-' . time();
-    $aktivitas = "Logout";
-    $stmt_history = $pdo->prepare("INSERT INTO history (id, admin_id, aktivitas) VALUES (?, ?, ?)");
-    $stmt_history->execute([$history_id, $admin_id, $aktivitas]);
-
     unset($_SESSION['admin']);
 
     header("Location: login.php");
@@ -41,8 +36,7 @@ $produk_gitar = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <nav class="space-between">
         <div class="menu-nav">
-            <a href="index.php">Produk</a>
-            <a href="history.php">History</a>
+            <h2>Panel Admin</h2>
         </div>
         <div class="log-out-nav">
             <a href="?logout" class="logout-btn">Logout</a>
@@ -50,7 +44,7 @@ $produk_gitar = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </nav>
 
     <div class="container">
-        <h1>Produk</h1>
+        <h1>Daftar Produk</h1>
 
         <div class="space-between">
             <a href="create_produk.php" class="action-links button">Menambahkan Produk</a>

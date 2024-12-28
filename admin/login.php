@@ -30,14 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['admin']['username'] = $admin['username'];
         $_SESSION['admin']['id'] = $admin['id'];
 
-        // Mencatat aktivitas login ke tabel history
-        $history_id = 'history-' . time();
-        $aktivitas = "Telah melakukan login";
-        $admin_id = $admin['id'];
-
-        $stmt_history = $pdo->prepare("INSERT INTO history (id, admin_id, aktivitas) VALUES (?, ?, ?)");
-        $stmt_history->execute([$history_id, $admin_id, $aktivitas]);
-
         header("Location: index.php");
         exit();
     } else {

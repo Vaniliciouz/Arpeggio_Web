@@ -24,12 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     $stmt = $pdo->prepare("INSERT INTO admins (id, username, nama, password) VALUES (?, ?, ?, ?)");
     if ($stmt->execute([$adminId, $username, $nama, $password])) {
-        // Tambahkan entri riwayat
-        $history_id = 'history-' . time();
-        $aktivitas = "Admin baru $username telah dibuat";
-        $stmt_history = $pdo->prepare("INSERT INTO history (id, admin_id, aktivitas) VALUES (?, ?, ?)");
-        $stmt_history->execute([$history_id, $adminId, $aktivitas]);
-
+        
         echo "Registration successful!";
     } else {
         echo "Error: Could not register admin.";

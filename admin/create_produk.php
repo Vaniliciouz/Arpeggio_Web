@@ -50,12 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($uploadOk && move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
         $image_url = 'assets/guitar/' . basename($_FILES["image"]["name"]);
         $stmt = $pdo->prepare("INSERT INTO produk_gitar (nama, harga, deskripsi, image_url, stok, admin_id) VALUES (?, ?, ?, ?, ?, ?)");
-        if ($stmt->execute([$nama, $harga, $deskripsi, $image_url, $stok, $admin_id])) {
-            $history_id = 'history-' . time();
-            $aktivitas = "Menambahkan produk baru";
-            $stmt_history = $pdo->prepare("INSERT INTO history (id, admin_id, aktivitas) VALUES (?, ?, ?)");
-            $stmt_history->execute([$history_id, $admin_id, $aktivitas]);
-
+        if ($stmt->execute([$nama, $harga, $deskripsi, $image_url, $stok, $admin_id])) {   
             header("Location: index.php");
         } else {
             echo "Error: Could not create produk.";
