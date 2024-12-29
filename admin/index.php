@@ -67,7 +67,7 @@ $produk_gitar = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php foreach ($produk_gitar as $produk): ?>
                     <tr>
                         <td><?= htmlspecialchars($produk['nama']) ?></td>
-                        <td><?= htmlspecialchars($produk['harga']) ?></td>
+                        <td><?= 'Rp ' . number_format($produk['harga'], 0, ',', '.') ?></td>
                         <td><?= htmlspecialchars($produk['deskripsi']) ?></td>
                         <td><img src="/uas/<?= htmlspecialchars($produk['image_url']) ?>"></td>
                         <td><?= htmlspecialchars($produk['stok']) ?></td>

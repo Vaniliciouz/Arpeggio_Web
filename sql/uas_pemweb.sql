@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2024 at 05:52 AM
+-- Generation Time: Dec 29, 2024 at 06:08 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -69,7 +69,7 @@ CREATE TABLE `produk_gitar` (
 --
 
 INSERT INTO `produk_gitar` (`id`, `nama`, `harga`, `deskripsi`, `image_url`, `stok`, `admin_id`, `created_at`, `updated_at`) VALUES
-(10, 'Gitar Ovation', 2750000.00, 'Bejirr', '../assets/guitar/10.-Gitar-Akustik-Ovation-420x42.jpg', 3, 'admin-1735374692', '2024-12-28 12:42:42', '2024-12-28 17:54:09'),
+(10, 'Gitar Ovation', 2750000.00, 'Bejirr', 'assets/guitar/10.-Gitar-Akustik-Ovation-420x42.jpg', 3, 'admin-1735374692', '2024-12-28 12:42:42', '2024-12-29 05:06:41'),
 (11, 'Gitar', 1000000.00, 'Tes', '../assets/guitar/704087_720.png', 3, 'admin-1729315010', '2024-12-28 12:56:41', '2024-12-28 17:54:19'),
 (14, 'PIA3761', 56800000.00, 'Designed in collaboration with Steve Vai, the Ibanez Steve Vai PIA3761 is a sonically versatile, high-performance solidbody electric guitar. ', '..assets/guitar/p_region_PIA3761_SLW_00_02_sub_1.jpg', 5, 'admin-1729315010', '2024-12-28 17:28:45', '2024-12-28 17:28:45'),
 (15, 'Les Paul Traditional Pro V', 48600000.00, 'The Gibson Les Paul Traditional Pro V AAA Flame Top is a modern upgrade to a classic design.', '..assets/guitar/L69587000007000-00-600x600.jpg', 3, 'admin-1729315010', '2024-12-28 17:41:18', '2024-12-28 17:41:18'),
