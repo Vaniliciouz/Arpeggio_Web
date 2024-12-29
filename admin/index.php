@@ -66,21 +66,21 @@ $produk_gitar = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <tbody>
                 <?php foreach ($produk_gitar as $produk): ?>
                     <tr>
-                        <td><?= htmlspecialchars($produk['nama']) ?></td>
-                        <td><?= htmlspecialchars($produk['harga']) ?></td>
-                        <td><?= htmlspecialchars($produk['deskripsi']) ?></td>
-                        <td><img src="/uas/<?= htmlspecialchars($produk['image_url']) ?>"></td>
-                        <td><?= htmlspecialchars($produk['stok']) ?></td>
-                        <td><?= htmlspecialchars($produk['admin_name']) ?></td>
+                        <td><?=htmlspecialchars($produk['nama'])?></td>
+                        <td><?=htmlspecialchars($produk['harga'])?></td>
+                        <td><?=htmlspecialchars($produk['deskripsi'])?></td>
+                        <td><img src="/Arpeggio_Web/<?=htmlspecialchars($produk['image_url'])?>"></td>
+                        <td><?=htmlspecialchars($produk['stok'])?></td>
+                        <td><?=htmlspecialchars($produk['admin_name'])?></td>
                         <td>
-                            <a href="edit_produk.php?id=<?= htmlspecialchars($produk['id']) ?>" class="action-links">Edit</a>
+                            <a href="edit_produk.php?id=<?=htmlspecialchars($produk['id'])?>" class="action-links">Edit</a>
                         </td>
                         <td>
-                            <a href="hapus_produk.php?id=<?= htmlspecialchars($produk['id']) ?>"
+                            <a href="hapus_produk.php?id=<?=htmlspecialchars($produk['id'])?>"
                                 class="action-links">Hapus</a>
                         </td>
                     </tr>
-                <?php endforeach; ?>
+                <?php endforeach;?>
             </tbody>
         </table>
     </div>

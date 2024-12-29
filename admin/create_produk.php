@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    $target_dir = "../assets/guitar/";
+    $target_dir = "assets/guitar/";
     if (!is_dir($target_dir)) {
         if (!mkdir($target_dir, 0777, true)) {
             echo "Error: Tidak dapat membuat direktori " . $target_dir;
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if ($uploadOk && move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-        $image_url = '../assets/guitar/' . basename($_FILES["image"]["name"]);
+        $image_url = 'assets/guitar/' . basename($_FILES["image"]["name"]);
         $stmt = $pdo->prepare("INSERT INTO produk_gitar (nama, harga, deskripsi, image_url, stok, admin_id) VALUES (?, ?, ?, ?, ?, ?)");
         if ($stmt->execute([$nama, $harga, $deskripsi, $image_url, $stok, $admin_id])) {
             header("Location: index.php");

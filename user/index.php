@@ -51,11 +51,11 @@ function formatRupiah($angka)
                 <?php foreach ($produk_gitar as $produk): ?>
                     <div class="card">
                         <div class="image">
-                            <img src="<?=base_image_url . htmlspecialchars($produk['image_url'])?>" alt="<?=htmlspecialchars($produk['nama'])?>">
+                            <img src="/Arpeggio_Web/<?=htmlspecialchars($produk['image_url'])?>" alt="<?=htmlspecialchars($produk['nama'])?>">
                         </div>
                         <div class="content">
                             <h2><?=htmlspecialchars($produk['nama'])?></h2>
-                            <p class="stok">Stok: <?=htmlspecialchars($produk['stok']) ? 'Tersedia' : 'Kosong'?></p>
+                            <p class="stok">Stok : <?=htmlspecialchars($produk['stok'])?></p>
                             <p class="deskripsi"><?=htmlspecialchars($produk['deskripsi'])?></p>
                             <div class="details">
                                 <span class="harga"><?=formatRupiah(htmlspecialchars($produk['harga']))?></span>
