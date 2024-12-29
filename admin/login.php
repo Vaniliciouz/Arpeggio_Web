@@ -1,62 +1,40 @@
 <?php
-session_start();
-
-if (isset($_SESSION['admin'])) {
-    $admin_id = $_SESSION['admin']['id'];
-    $username = $_SESSION['admin']['username'];
-
-    $stmt = $pdo->prepare("SELECT * FROM admins WHERE username = ? AND id = ?");
-    $stmt->execute([$username, $admin_id]);
-    $admin = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($admin) {
-        header("Location: index.php");
-        exit();
-    }
-}
+header('Content-Type: application/json');  // Set header agar aplikasi menerima JSON
 
 include '../config/db.php';
 
-// Logika login
+// Cek apakah permintaan adalah POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
-    $password = md5($_POST['password']);
+    $password = md5($_POST['password']);  // Enkripsi password dengan MD5 (sesuaikan dengan logika Anda sebelumnya)
 
+    // Mencari admin dengan username dan password
     $stmt = $pdo->prepare("SELECT * FROM admins WHERE username = ? AND password = ?");
     $stmt->execute([$username, $password]);
     $admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($admin) {
-        $_SESSION['admin']['username'] = $admin['username'];
-        $_SESSION['admin']['id'] = $admin['id'];
-
-        header("Location: index.php");
-        exit();
+        // Jika login berhasil, kirimkan response JSON dengan status success
+        echo json_encode([
+            'success' => true,
+            'message' => 'Login successful',
+            'admin' => [
+                'username' => $admin['username'],
+                'id' => $admin['id']
+            ]
+        ]);
     } else {
-        $error = "Invalid username or password.";
+        // Jika login gagal, kirimkan response JSON dengan status error
+        echo json_encode([
+            'success' => false,
+            'message' => 'Invalid username or password'
+        ]);
     }
+} else {
+    // Jika bukan metode POST, kirimkan error method
+    echo json_encode([
+        'success' => false,
+        'message' => 'Invalid request method'
+    ]);
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-        <form class="input-form" method="post">
-            <h1>Login</h1>
-            <input type="text" name="username" placeholder="Username" required><br>
-            <input type="password" name="password" placeholder="Password" required><br>
-            <p>Belum memiliki akun? <a href="register.php" class="input-link">Daftar</a></p>
-            <button type="submit">Login</button>
-        </form>
-        <!-- Error message -->
-        <?php if (isset($error)) {?>
-            <p class="error"><?=$error?></p>
-        <?php }?>
-</body>
-</html>

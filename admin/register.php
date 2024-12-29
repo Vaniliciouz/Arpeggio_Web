@@ -16,44 +16,41 @@ if (isset($_SESSION['admin'])) {
     }
 }
 
+// Menghandle form registrasi
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $adminId = 'admin-' . time();
     $username = $_POST['username'];
     $nama = $_POST['nama'];
     $password = md5($_POST['password']);
-    
+
+    // Cek apakah username sudah ada
+    $stmt = $pdo->prepare("SELECT * FROM admins WHERE username = ?");
+    $stmt->execute([$username]);
+    $existingUser = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($existingUser) {
+        // Jika username sudah ada, kirimkan respons error
+        echo json_encode([
+            "success" => false,
+            "message" => "Username sudah terdaftar."
+        ]);
+        exit();
+    }
+
+    // Jika username belum ada, lanjutkan proses registrasi
+    $adminId = 'admin-' . time();
     $stmt = $pdo->prepare("INSERT INTO admins (id, username, nama, password) VALUES (?, ?, ?, ?)");
     if ($stmt->execute([$adminId, $username, $nama, $password])) {
-        
-        echo "Registration successful!";
+        // Registrasi berhasil
+        echo json_encode([
+            "success" => true,
+            "message" => "Registrasi berhasil!"
+        ]);
     } else {
-        echo "Error: Could not register admin.";
+        // Error saat memasukkan data
+        echo json_encode([
+            "success" => false,
+            "message" => "Error: Gagal melakukan registrasi."
+        ]);
     }
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registarsi</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-        <form class="input-form" method="post">
-            <h1>Registrasi</h1>
-            <input type="text" name="username" placeholder="Username" required><br>
-            <input type="text" name="nama" placeholder="nama" required><br>
-            <input type="password" name="password" placeholder="Password" required><br>
-            <div class="space-between">
-                <a class="cancel-button" href="login.php">Kembali</a>
-                <button class="submit-button" type="submit">Registrasi</button>
-            </div>
-        </form>
-        <!-- Error message -->
-        <?php if(isset($error)) { ?>
-            <p class="error"><?= $error ?></p>
-        <?php } ?>
-</body>
-</html>
