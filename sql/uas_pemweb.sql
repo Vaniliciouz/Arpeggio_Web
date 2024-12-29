@@ -3,11 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-<<<<<<< HEAD
--- Generation Time: Dec 29, 2024 at 08:10 AM
-=======
--- Generation Time: Dec 29, 2024 at 06:08 AM
->>>>>>> 3807e79e1074a1a34d75940529bd1a757318320a
+-- Generation Time: Dec 29, 2024 at 08:27 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -73,20 +69,12 @@ CREATE TABLE `produk_gitar` (
 --
 
 INSERT INTO `produk_gitar` (`id`, `nama`, `harga`, `deskripsi`, `image_url`, `stok`, `admin_id`, `created_at`, `updated_at`) VALUES
-<<<<<<< HEAD
 (10, 'Gitar Ovation', 2750000.00, 'Bejirr', 'assets/guitar/10.-Gitar-Akustik-Ovation-420x42.jpg', 2, 'admin-1735374692', '2024-12-28 12:42:42', '2024-12-29 06:08:43'),
 (11, 'Gitar', 1000000.00, 'Tes', 'assets/guitar/704087_720.png', 3, 'admin-1729315010', '2024-12-28 12:56:41', '2024-12-29 05:47:55'),
 (14, 'PIA3761', 56800000.00, 'Designed in collaboration with Steve Vai, the Ibanez Steve Vai PIA3761 is a sonically versatile, high-performance solidbody electric guitar. ', 'assets/guitar/p_region_PIA3761_SLW_00_02_sub_1.jpg', 5, 'admin-1729315010', '2024-12-28 17:28:45', '2024-12-29 05:48:10'),
 (15, 'Les Paul Traditional Pro V', 48600000.00, 'The Gibson Les Paul Traditional Pro V AAA Flame Top is a modern upgrade to a classic design.', 'assets/guitar/L69587000007000-00-600x600.jpg', 3, 'admin-1729315010', '2024-12-28 17:41:18', '2024-12-29 05:48:18'),
-(16, 'Fender Player Stratocaster', 11300000.00, 'The Fender Player Limited-Edition Stratocaster an electric guitar built for a pro with an entry-level price tag. ', 'assets/guitar/L46833000001000-00-600x600.jpg', 7, 'admin-1729315010', '2024-12-28 17:42:58', '2024-12-29 06:10:40'),
-(18, 'Schecter Synyster Gates Custom-7', 37200000.00, 'At long last, the next entry in the signature Synyster Gates garrison of guitars has landed: the Schecter Custom-7 TR Headless.', 'assets/guitar/Schecter_Syn.jpg', 2, 'admin-1729315010', '2024-12-29 05:35:15', '2024-12-29 05:35:15');
-=======
-(10, 'Gitar Ovation', 2750000.00, 'Bejirr', 'assets/guitar/10.-Gitar-Akustik-Ovation-420x42.jpg', 3, 'admin-1735374692', '2024-12-28 12:42:42', '2024-12-29 05:06:41'),
-(11, 'Gitar', 1000000.00, 'Tes', '../assets/guitar/704087_720.png', 3, 'admin-1729315010', '2024-12-28 12:56:41', '2024-12-28 17:54:19'),
-(14, 'PIA3761', 56800000.00, 'Designed in collaboration with Steve Vai, the Ibanez Steve Vai PIA3761 is a sonically versatile, high-performance solidbody electric guitar. ', '..assets/guitar/p_region_PIA3761_SLW_00_02_sub_1.jpg', 5, 'admin-1729315010', '2024-12-28 17:28:45', '2024-12-28 17:28:45'),
-(15, 'Les Paul Traditional Pro V', 48600000.00, 'The Gibson Les Paul Traditional Pro V AAA Flame Top is a modern upgrade to a classic design.', '..assets/guitar/L69587000007000-00-600x600.jpg', 3, 'admin-1729315010', '2024-12-28 17:41:18', '2024-12-28 17:41:18'),
-(16, 'Fender Player Stratocaster', 11300000.00, 'The Fender Player Limited-Edition Stratocaster an electric guitar built for a pro with an entry-level price tag. ', '..assets/guitar/L46833000001000-00-600x600.jpg', 10, 'admin-1729315010', '2024-12-28 17:42:58', '2024-12-28 17:42:58');
->>>>>>> 3807e79e1074a1a34d75940529bd1a757318320a
+(16, 'Fender Player Stratocaster', 11300000.00, 'The Fender Player Limited-Edition Stratocaster an electric guitar built for a pro with an entry-level price tag. ', 'assets/guitar/L46833000001000-00-600x600.jpg', 6, 'admin-1729315010', '2024-12-28 17:42:58', '2024-12-29 07:16:45'),
+(18, 'Schecter Synyster Gates Custom-7', 37200000.00, 'At long last, the next entry in the signature Synyster Gates garrison of guitars has landed: the Schecter Custom-7 TR Headless.', 'assets/guitar/Schecter_Syn.jpg', 4, 'admin-1729315010', '2024-12-29 05:35:15', '2024-12-29 07:18:05');
 
 --
 -- Indexes for dumped tables
