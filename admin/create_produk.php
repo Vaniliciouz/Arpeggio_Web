@@ -3,21 +3,21 @@ include '../config/db.php';
 session_start();
 
 if (!isset($_SESSION['admin'])) {
-    $admin_id = $_SESSION['admin']['id'];
-    $username = $_SESSION['admin']['username'];
-
-    $stmt = $pdo->prepare("SELECT * FROM admins WHERE username = ? AND id = ?");
-    $stmt->execute([$username, $admin_id]);
-    $admin = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if (!$admin) {
-        unset($_SESSION['admin']);
-        header("Location: login.php");
-        exit();
-    }
+    header("Location: login.php");
+    exit();
 }
 
 $admin_id = $_SESSION['admin']['id'];
+$username = $_SESSION['admin']['username'];
+
+$stmt = $pdo->prepare("SELECT * FROM admins WHERE username = ? AND id = ?");
+$stmt->execute([$username, $admin_id]);
+$admin = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!$admin) {
+    unset($_SESSION['admin']);
+    header("Location: login.php");
+    exit();
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = 'produk-' . time();
@@ -33,7 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $target_dir = "../assets/guitar/";
     if (!is_dir($target_dir)) {
-        mkdir($target_dir, 0777, true);
+        if (!mkdir($target_dir, 0777, true)) {
+            echo "Error: Tidak dapat membuat direktori " . $target_dir;
+            exit();
+        }
     }
 
     $target_file = $target_dir . basename($_FILES["image"]["name"]);
@@ -48,9 +51,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if ($uploadOk && move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-        $image_url = 'assets/guitar/' . basename($_FILES["image"]["name"]);
+        $image_url = '../assets/guitar/' . basename($_FILES["image"]["name"]);
         $stmt = $pdo->prepare("INSERT INTO produk_gitar (nama, harga, deskripsi, image_url, stok, admin_id) VALUES (?, ?, ?, ?, ?, ?)");
-        if ($stmt->execute([$nama, $harga, $deskripsi, $image_url, $stok, $admin_id])) {   
+        if ($stmt->execute([$nama, $harga, $deskripsi, $image_url, $stok, $admin_id])) {
             header("Location: index.php");
         } else {
             echo "Error: Could not create produk.";

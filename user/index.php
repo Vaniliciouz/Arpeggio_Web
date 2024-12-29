@@ -51,7 +51,7 @@ function formatRupiah($angka)
                 <?php foreach ($produk_gitar as $produk): ?>
                     <div class="card">
                         <div class="image">
-                            <img src="<?=base_image_url . $produk['image_url']?>" alt="<?=htmlspecialchars($produk['nama'])?>">
+                            <img src="<?=base_image_url . htmlspecialchars($produk['image_url'])?>" alt="<?=htmlspecialchars($produk['nama'])?>">
                         </div>
                         <div class="content">
                             <h2><?=htmlspecialchars($produk['nama'])?></h2>
@@ -70,7 +70,7 @@ function formatRupiah($angka)
 
     <footer>
         <div class="footer-content">
-            <p>&copy; <?=date("Y");?> Arpeggio Guitar Store. All rights reserved.</p>
+            <p>&copy; <?=date("Y");?> Arpeggio Guitar Shop. All rights reserved.</p>
         </div>
     </footer>
 
