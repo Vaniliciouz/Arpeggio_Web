@@ -1,13 +1,11 @@
 <?php
 include '../config/db.php';
+include '../admin/method.php';
 
-$stmt = $pdo->query("SELECT * FROM produk_gitar");
-$produk_gitar = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$api = new RESTAPI();
 
-function formatRupiah($angka)
-{
-    return "Rp " . number_format($angka, 0, ',', '.');
-}
+$produk_gitar = $api->getProdukGitar();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -58,7 +56,7 @@ function formatRupiah($angka)
                             <p class="stok">Stok : <?=htmlspecialchars($produk['stok'])?></p>
                             <p class="deskripsi"><?=htmlspecialchars($produk['deskripsi'])?></p>
                             <div class="details">
-                                <span class="harga"><?=formatRupiah(htmlspecialchars($produk['harga']))?></span>
+                                <span class="harga"><?=htmlspecialchars($produk['harga'])?></span>
                                 <a class="button" href="detail_produk.php?id=<?=htmlspecialchars($produk['id'])?>">Lihat Detail</a>
                             </div>
                         </div>

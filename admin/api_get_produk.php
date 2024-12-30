@@ -1,28 +1,57 @@
 <?php
-// Konfigurasi database
 include '../config/db.php';
+include '../admin/method.php';
 
-// Atur header untuk mengembalikan JSON
-header('Content-Type: application/json');
+$request_method = $_SERVER["REQUEST_METHOD"];
 
-try {
-    // Query untuk mengambil data produk yang diperlukan
-    $stmt = $pdo->prepare("
-        SELECT produk_gitar.nama, produk_gitar.harga, produk_gitar.deskripsi, produk_gitar.image_url, produk_gitar.stok, admins.nama AS admin_name
-        FROM produk_gitar
-        JOIN admins ON produk_gitar.admin_id = admins.id
-    ");
-    $stmt->execute();
+$api = new RESTAPI();
 
-    // Ambil hasil query sebagai array
-    $produk_gitar = $stmt->fetchAll(PDO::FETCH_ASSOC);
+switch ($request_method) {
+    case 'GET':
+        try {
+            if (!empty($_GET["id"])) {
+                $id = intval($_GET["id"]);
+                $api->getProdukGitarAsJSON($id); // Pastikan metode ini mengembalikan JSON
+            } else {
+                $api->getProdukGitarAsJSON(); // Panggil tanpa ID untuk semua data
+            }
+        } catch (Exception $e) {
+            echo json_encode(["status" => 0, "message" => $e->getMessage()]);
+        }
+        break;
 
-    // Kembalikan data sebagai JSON
-    echo json_encode($produk_gitar, JSON_PRETTY_PRINT);
+    case 'POST':
+        try {
+            $api->insertProdukGitar();
+        } catch (Exception $e) {
+            echo json_encode(["status" => 0, "message" => $e->getMessage()]);
+        }
+        break;
 
-} catch (Exception $e) {
-    // Tangani error jika terjadi masalah
-    echo json_encode(['error' => 'Gagal mengambil data: ' . $e->getMessage()]);
+    case 'PUT':
+        $data = json_decode(file_get_contents("php://input"), true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            echo json_encode(["status" => 0, "message" => "Invalid JSON"]);
+            break;
+        }
+        try {
+            $api->updateProdukGitar($data);
+        } catch (Exception $e) {
+            echo json_encode(["status" => 0, "message" => $e->getMessage()]);
+        }
+        break;
+
+    case 'DELETE':
+        if (!empty($_GET["id"])) {
+            $id = intval($_GET["id"]);
+            $api->deleteProdukGitar($id);
+        } else {
+            echo json_encode(["status" => 0, "message" => "ID is required"]);
+        }
+        break;
+
+    default:
+        header("HTTP/1.0 405 Method Not Allowed");
+        echo json_encode(["status" => 0, "message" => "Method Not Allowed"]);
+        break;
 }
-
-exit();

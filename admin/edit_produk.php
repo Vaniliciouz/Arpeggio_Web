@@ -107,16 +107,16 @@ if (isset($_GET['id'])) {
     <form class="input-form" method="post" enctype="multipart/form-data">
         <h1>Edit Produk</h1>
         Nama:<br>
-        <input type="text" name="nama" value="<?= htmlspecialchars($produk['nama']) ?>" required><br>
+        <input type="text" name="nama" value="<?=htmlspecialchars($produk['nama'])?>" required><br>
         Harga:<br>
-        <input type="number" name="harga" value="<?= htmlspecialchars($produk['harga']) ?>" required><br>
+        <input type="number" name="harga" value="<?=htmlspecialchars($produk['harga'])?>" required><br>
         Deskripsi:<br>
-        <textarea name="deskripsi" required><?= htmlspecialchars($produk['deskripsi']) ?></textarea><br>
+        <textarea name="deskripsi" required><?=htmlspecialchars($produk['deskripsi'])?></textarea><br>
         Image:<br>
-        <img src="../<?= htmlspecialchars($produk['image_url']) ?>" id="preview" alt="Current Image" style="max-width: 200px; max-height: 200px;"><br>
+        <img src="../<?=htmlspecialchars($produk['image_url'])?>" id="preview" alt="Current Image" style="max-width: 200px; max-height: 200px;"><br>
         <input type="file" name="image" onchange="previewImage(event)"><br>
         Stok:<br>
-        <input type="number" name="stok" value="<?= htmlspecialchars($produk['stok']) ?>" required><br>
+        <input type="number" name="stok" value="<?=htmlspecialchars($produk['stok'])?>" required><br>
         <div class="space-between">
             <a class="cancel-button" href="index.php">Kembali</a>
             <button class="submit-button" type="submit">Simpan Perubahan</button>

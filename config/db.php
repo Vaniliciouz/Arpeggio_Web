@@ -1,5 +1,4 @@
 <?php
-define('base_image_url', '/UAS/');
 $host = '127.0.0.1';
 $db = 'uas_pemweb';
 $user = 'root';
@@ -11,4 +10,3 @@ try {
 } catch (PDOException $e) {
     die("Could not connect to the database $db :" . $e->getMessage());
 }
-?>
